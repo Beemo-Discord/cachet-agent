@@ -31,7 +31,7 @@ def get_server_count():
 
 while True:
     server_count = get_server_count()
-    resp = make_request(2, server_count)
+    resp = make_request(3, server_count)
     print("server count: {0}".format(server_count))
     print("response: {0}\n".format(resp))
     time.sleep(65)
