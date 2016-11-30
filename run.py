@@ -2,16 +2,22 @@ import json
 import redis
 import requests
 import time
+import os
 
-config = json.load(open("config.json", "r"))
-r = redis.Redis(host=config["host"], port=config["port"], password=config["auth"], db=config["db"], decode_responses=True)
+r = redis.Redis(
+    host=os.getenv("REDIS_HOST"),
+    port=int(os.getenv("REDIS_PORT")),
+    db=int(os.getenv("REDIS_DB")),
+    password=os.getenv("REDIS_PASSWORD"),
+    decode_responses=True
+)
 
 def make_request(id, value):
-    url = "{0}/api/v1/metrics/{1}/points".format(config["cachet_website"], id)
+    url = "{0}/api/v1/metrics/{1}/points".format(os.getenv("CACHET_WEBSITE"), id)
 
     headers = {
         "content-type": "application/json",
-        "X-Cachet-Token": config["cachet_token"]
+        "X-Cachet-Token": os.getenv("CACHET_TOKEN")
     }
 
     contents = json.dumps({

@@ -1,8 +1,0 @@
-{
-	"cachet_token": "",
-	"host": "redis host",
-	"port": "6379",
-    "auth": "",
-    "db": 0,
-    "cachet_website": "http://demo.cachethq.io"
-}
